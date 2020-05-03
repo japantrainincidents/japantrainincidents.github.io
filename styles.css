@@ -1,0 +1,129 @@
+/* Global styles */
+
+p {
+	font-size: 1em;
+	line-height: 2em;
+}
+
+.svg-tooltip {
+    background: rgba(69,77,93,.9);
+    border-radius: .1rem;
+    color: #fff;
+    display: block;
+    max-width: 320px;
+    padding: .2rem .4rem;
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: pre;
+    z-index: 300;
+    visibility: hidden;
+}
+div.bar-tooltip{
+	background: rgba(69,77,93,.9);
+    border-radius: .1rem;
+    color: #fff;
+    padding: .2rem .4rem;
+	position: absolute;
+	width: 200px;
+	border: 1px;
+	font-size: 12px;
+
+	pointer-events: none;
+}
+
+.media {
+	margin: 50px 0;
+}
+
+.media p {
+	font-size: 14px;
+	line-height: 1.5em
+}
+
+.container {
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.heading {
+	text-align: center;
+	background: #444;
+	color: white;
+}
+
+/* Intro section */
+
+#intro {
+	height: 100vh;
+	background-color: #101321;
+    background-image: url(Japan-Map-Transparent-PNG.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+	color: white;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#intro p {
+	margin-top: 25px;
+}
+
+/* Styles for the demographics main visualization */
+
+#demographics {
+	display: flex;
+	flex-direction: column;
+}
+
+#severity {
+	display: flex;
+	width: 100%;
+	padding: 0 100px;
+	margin: 0 auto;
+	justify-content: space-evenly;
+}
+
+#severity input, #severity label {
+	cursor: pointer;
+}
+
+/* Styles for the accidents per month visualization */
+
+#accidents-per-month {
+	display: flex;
+	justify-content: center;
+}
+
+#accidents-per-month .legend {
+	display: flex;
+	flex-direction: column;
+	max-width: 100px;
+}
+
+#accidents-per-month .legend p#blue-line-desc {
+	margin: 0 0 25px 0;
+	color: steelblue;
+}
+
+#accidents-per-month .legend button {
+	margin: 0 10px 10px 0;
+}
+
+/*style for japanbar */
+
+#japanbar {
+	display: flex;
+	width: 100%;
+	padding: 0 100px;
+	margin: 0 auto;
+
+}
+#japangenderbar {
+	display: flex;
+	width: 100%;
+	padding: 0 100px;
+	margin: 0 auto;
+
+}
