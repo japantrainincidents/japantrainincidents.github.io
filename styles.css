@@ -35,6 +35,15 @@ div.bar-tooltip{
 	margin: 50px 0;
 }
 
+.flex {
+	display: flex;
+}
+
+.center {
+	justify-content: center;
+	align-items: center;
+}
+
 .media p {
 	font-size: 14px;
 	line-height: 1.5em
@@ -113,17 +122,9 @@ div.bar-tooltip{
 
 /*style for japanbar */
 
-#japanbar {
+#japanbar, #japangenderbar {
 	display: flex;
 	width: 100%;
-	padding: 0 100px;
-	margin: 0 auto;
-
-}
-#japangenderbar {
-	display: flex;
-	width: 100%;
-	padding: 0 100px;
-	margin: 0 auto;
-
+	justify-content: center;
+	margin-top: 25px;
 }
