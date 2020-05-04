@@ -280,7 +280,7 @@ function createJapanBar(countdata){
 	//for legend
 	var valuesToShow = [100, 500, 1000, 1500, 2500, 4000, 6500]
 	var xRect = 100
-	var xLabel = 150
+	var xLabel = 160
 	var yRect = 500
 
 	//open geojson
