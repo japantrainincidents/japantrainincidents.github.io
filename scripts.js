@@ -279,7 +279,7 @@ function createJapanBar(countdata){
 		.style("opacity", "0");
 	//for legend
 	var valuesToShow = [100, 500, 1000, 1500, 2500, 4000, 6500]
-	var xRect = 100
+	var xRect = 110
 	var xLabel = 160
 	var yRect = 500
 
