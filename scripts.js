@@ -1053,3 +1053,123 @@ function createMonthlyViz(data) {
 	toggle(2011);
 	console.log(active);
 }
+
+function creategeoviz(){
+    var stnmap = {}
+    d3.json("/japan.geojson").then(function(japan){
+
+        var projection = d3.geoMercator()
+            .center([139.6503,35.6762])
+            .scale(2000)
+            // .scale(60000)
+            .translate([450,460]);
+
+
+        var geoGenerator = d3.geoPath()
+            .projection(projection);
+
+        function tsukuru(japan) {
+            var u = d3.select('#geoviz g.bg')
+                .selectAll('path')
+                .data(japan.features);
+
+            u.enter()
+                .append('path')
+                .attr('d', geoGenerator);
+        }
+
+        tsukuru(japan);
+
+    })
+
+    d3.json("/N02-18_GML/N02-18_RailroadSection.geojson").then(function(rrsections){
+
+        var projection = d3.geoMercator()
+            .center([139.6503,35.6762])
+            .scale(2000)
+            // .scale(60000)
+            .translate([450,460]);
+
+
+        var geoGenerator = d3.geoPath()
+            .projection(projection);
+
+        function update(rrsections) {
+            var u = d3.select('#geoviz content g.map')
+                .selectAll('path')
+                .data(rrsections.features);
+
+            u.enter()
+                .append('path')
+                .attr('d', geoGenerator);
+        }
+
+        update(rrsections);
+
+    })
+
+    d3.json("/N02-18_GML/N02-18_Station.geojson").then(function(stations){
+
+        var projection = d3.geoMercator()
+            .center([139.6503,35.6762])
+            .scale(2000)
+            // .scale(60000)
+            .translate([450,460]);
+
+
+        var geoGenerator = d3.geoPath()
+            .projection(projection);
+        
+        stations.features.forEach(function(stn){
+            stnmap[stn.properties.N02_005] = stn.geometry.coordinates;
+        });
+        
+
+
+        function draw(stations) {
+            var u = d3.select('#geoviz g.stops')
+                .selectAll('circle')
+                .data(stations.features);
+
+            u.enter()
+                .append('circle')
+                .attr('r', 1)
+                .attr("cx", function(d) {return projection(d.geometry.coordinates[0])[0]})
+                .attr("cy", function(d) {return projection(d.geometry.coordinates[1])[1]})
+
+
+        }
+
+        draw(stations);
+
+    })
+
+    d3.csv("the_real_true_final_version.csv").then(function(injurysites){
+
+        var projection = d3.geoMercator()
+            .center([139.6503,35.6762])
+            .scale(2000)
+            // .scale(60000)
+            .translate([450,460]);
+
+
+        var geoGenerator = d3.geoPath()
+            .projection(projection);
+
+        function paint(injurysites) {
+            var u = d3.select('#geoviz g.injuries')
+                .selectAll('circle')
+                .data(injurysites);
+
+            u.enter()
+                .append('circle')
+                .attr("class","injury")
+                .attr('r', 1)
+                .attr("cx", function(d) {return projection([d.start_longitude,d.start_latitude])[0]})
+                .attr("cy", function(d) {return projection([d.start_longitude,d.start_latitude])[1]})
+        }
+
+        paint(injurysites);
+
+    })
+}
