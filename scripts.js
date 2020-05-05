@@ -1057,7 +1057,7 @@ function createMonthlyViz(data) {
 
 function creategeoviz(){
     var stnmap = {}
-    d3.json("/japan.geojson").then(function(japan){
+    d3.json("https://github.com/japantrainincidents/japantrainincidents.github.io/blob/master/S12-18_GML/japan.geojson").then(function(japan){
 
         var projection = d3.geoMercator()
             .center([139.6503,35.6762])
