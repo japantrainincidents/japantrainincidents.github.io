@@ -19,6 +19,7 @@ $(document).ready(function() {
 		// 	createDemographicsVizWithSeverityFilter(data, ["Fatal"]);
 		// });
 	});
+	creategeoviz();
 	('jgender').hide();
 });
 
@@ -1144,7 +1145,7 @@ function creategeoviz(){
 
     })
 
-    d3.csv("the_real_true_final_version.csv").then(function(injurysites){
+    d3.csv("pre_processing_scripts/the_real_true_final_version.csv").then(function(injurysites){
 
         var projection = d3.geoMercator()
             .center([139.6503,35.6762])
