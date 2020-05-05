@@ -1082,7 +1082,7 @@ function creategeoviz(){
 
     })
 
-    d3.json("https://gist.githubusercontent.com/nicholsl/fe5e73a712f6da0ce68551a4e98798fd/raw/7d408b46a523507653825a4c2ca35e4da8d28ce7/N02-18_RailroadSection.geojson", function(rrsections){
+    d3.json("https://japantrainincidents.github.io/N02-18_GML/N02-18_RailroadSection.geojson", function(rrsections){
 
         var projection = d3.geoMercator()
             .center([139.6503,35.6762])
