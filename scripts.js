@@ -1069,7 +1069,7 @@ function creategeoviz(){
             .projection(projection);
 
         function tsukuru(japan) {
-            var u = d3.select('#geoviz g.bg')
+            var u = d3.select('#mapsvg g.bg')
                 .selectAll('path')
                 .data(japan.features);
 
@@ -1127,7 +1127,7 @@ function creategeoviz(){
 
 
         function draw(stations) {
-            var u = d3.select('#geoviz g.stops')
+            var u = d3.select('#mapsvg g.stops')
                 .selectAll('circle')
                 .data(stations.features);
 
@@ -1157,7 +1157,7 @@ function creategeoviz(){
             .projection(projection);
 
         function paint(injurysites) {
-            var u = d3.select('#geoviz g.injuries')
+            var u = d3.select('#mapsvg g.injuries')
                 .selectAll('circle')
                 .data(injurysites);
 
