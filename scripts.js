@@ -1095,7 +1095,7 @@ function creategeoviz(){
             .projection(projection);
 
         function update(rrsections) {
-            var u = d3.select('#geoviz content g.map')
+            var u = d3.select('#mapsvg g.map')
                 .selectAll('path')
                 .data(rrsections.features);
 
