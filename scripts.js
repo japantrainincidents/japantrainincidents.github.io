@@ -19,6 +19,7 @@ $(document).ready(function() {
 		// 	createDemographicsVizWithSeverityFilter(data, ["Fatal"]);
 		// });
 	});
+	creategeoviz();
 	('jgender').hide();
 });
 
