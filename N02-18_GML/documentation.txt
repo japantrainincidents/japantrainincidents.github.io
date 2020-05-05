@@ -1,0 +1,49 @@
+
+Railway version 2.3	identifier	N02
+content	About passenger railroads / tracks lines and stations nationwide, shapes (lines), railroad divisions (ordinary railroad, steel rope railway, suspension monorail, straddle monorail, etc.), operators (bullet trains, JR conventional lines, public railways, Private railways, third sector), route names, operating companies, etc. The station is maintained as part of the railway line.
+Related law	－
+Date as the basis for data	As of December 31, 2018
+Source material	Geospatial Information Authority of Japan "Numerical map 25000 (spatial data infrastructure)", "Electronic topographic map (tile)", Electric vehicle study group / Railway book publication society "Railway handbook" (supervised by the Ministry of Land, Infrastructure, Transport and Tourism Railway Bureau), each railway Official website of the company
+How to create
+(display original)	With reference to the “Railway Manual” etc., we updated the data by acquiring the shape and position from the original documents for the lines that were opened by the data creation reference date and the newly established / renamed stations.
+* In creating this map, electronic topographic maps (tiles) issued by the Geographical Survey Institute were used with the approval of the director of the Geographical Survey Institute. (Approval No. Hira 30 Envoy, No. 1459)
+Coordinate system	JGD2011 / (B, L)
+Data shape	line
+data structure	image
+
+《Click for a larger view》
+《Click for a larger view》
+Feature Information	Feature name	Explanation
+Train	Higher class of "railroad section" and "station".
+Attribute information	Attribute name (shp attribute name in parentheses)	Explanation	Attribute type
+place	Location of trains and stations.	Curve type (GM_Curve)
+Railway classification (N02_001)	Distinguished by the type of railway line.	Code list " Railway classification code "
+Business type (N02_002)	Distinguished by operators of railway lines.	Code list " Business type code "
+Route name (N02_003)	The name of the railway line.	Text type
+Operating company (N02_004)	A company that operates railway lines.	Text type
+Feature Information	Feature name	Explanation
+Railway section	Lower class of "railroad".
+Attribute information	Related role name	Explanation	Related destination
+station	The station to which the railway line is related.	Feature "Station"
+Feature Information	Feature name	Explanation
+station	Lower class of "railroad".
+Attribute information	Attribute name	Explanation	Attribute type
+Station name (N02_005)	Station name.	Text type
+Related role name	Explanation	Related destination
+Railway section	The railway line that the station is associated with.	Feature "railroad section"
+Main quality information	■ Completeness / excess / leakage: 0% error rate
+Compared to railway lines / stations at each time point.
+Compare if there are no routes / stations (cargo lines, private lines, drop lines, cableways, etc.) other than passenger railways / tracks.
+Position accuracy / absolute accuracy (external accuracy): 0% error rate
+Numerical map 25000 (spatial data base), electronic topographic map (tile), and other reference materials compared.
+Data format (encoding)	-Encoding based on JPGIS (GML format). For details , refer to the coding rules in the product specifications .
+・ GeoJSON format (from
+2016 ) ・ Shape file format. About shapefile attributes
+Registration in the National Land Information Web Mapping System	Registered ( You can check the information graphically on the web mapping system )
+Other information	The metadata of each data is attached to the downloaded file.
+License terms for this data	This data can be used, including commercial use, without making an application by satisfying the following conditions.
+・ Fully understand and accept the "Terms of Use of National Land Information".
+・ Display that the source is "National Land Numerical Information" and the name of the person who processed it.
+Change log	　
+
+http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-v2_3.html
