@@ -1056,7 +1056,7 @@ function createMonthlyViz(data) {
 
 function creategeoviz(){
     var stnmap = {}
-    d3.json("https://github.com/japantrainincidents/japantrainincidents.github.io/blob/master/S12-18_GML/japan.geojson").then(function(japan){
+    d3.json("https://github.com/japantrainincidents/japantrainincidents.github.io/blob/master/S12-18_GML/japan.geojson", function(japan){
 
         var projection = d3.geoMercator()
             .center([139.6503,35.6762])
@@ -1082,7 +1082,7 @@ function creategeoviz(){
 
     })
 
-    d3.json("https://github.com/japantrainincidents/japantrainincidents.github.io/blob/master/S12-18_GML/N02-18_GML/N02-18_RailroadSection.geojson").then(function(rrsections){
+    d3.json("https://github.com/japantrainincidents/japantrainincidents.github.io/blob/master/S12-18_GML/N02-18_GML/N02-18_RailroadSection.geojson", function(rrsections){
 
         var projection = d3.geoMercator()
             .center([139.6503,35.6762])
@@ -1108,7 +1108,7 @@ function creategeoviz(){
 
     })
 
-    d3.json("https://github.com/japantrainincidents/japantrainincidents.github.io/blob/master/S12-18_GML/N02-18_GML/N02-18_Station.geojson").then(function(stations){
+    d3.json("https://github.com/japantrainincidents/japantrainincidents.github.io/blob/master/S12-18_GML/N02-18_GML/N02-18_Station.geojson", function(stations){
 
         var projection = d3.geoMercator()
             .center([139.6503,35.6762])
@@ -1144,7 +1144,7 @@ function creategeoviz(){
 
     })
 
-    d3.csv("https://raw.githubusercontent.com/kennyyuan98/data-viz-a5/master/pre_processing_scripts/the_real_true_final_version.csv").then(function(injurysites){
+    d3.csv("https://raw.githubusercontent.com/kennyyuan98/data-viz-a5/master/pre_processing_scripts/the_real_true_final_version.csv", function(injurysites){
 
         var projection = d3.geoMercator()
             .center([139.6503,35.6762])
