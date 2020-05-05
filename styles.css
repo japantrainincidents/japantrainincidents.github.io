@@ -159,7 +159,7 @@ div.bar-tooltip{
         outline-color:black;
     }
 
-    #mapsvg circle .injury{
+    #mapsvg .injury{
         fill: yellow;
         fill-opacity: 20%;
     }
