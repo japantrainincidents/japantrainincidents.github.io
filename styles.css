@@ -136,25 +136,25 @@ div.bar-tooltip{
 }
 
 /*style for geoviz */
-body {
+    body {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-size: 14px;
         color: #333;
     }
 
-    #geoviz .map path {
+    #mapsvg .map path {
         fill: none;
         stroke: dodgerblue;
         stroke-width: .5px;
     }
 
-    #geoviz .bg path {
+    #mapsvg .bg path {
         fill: none;
         stroke: slategray;
         stroke-width: .5px;
     }
 
-    circle{
+    #mapsvg circle{
         fill: dodgerblue;
         outline-color:black;
     }
