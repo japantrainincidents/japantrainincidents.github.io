@@ -529,6 +529,24 @@ function createHourlyViz(data) {
         	.attr("cx", d=>Math.round(x(d[0])))
         	.attr("cy", d=>Math.round(y(d[1])))
 	  		.attr("transform","translate("+x.bandwidth()/2+", 0)");
+
+	 svg.append("text")
+	 	.attr("x", x(7))
+	    .attr("y", y(30))
+	    .style("font-style", "italic")
+	    .text("(going to work)")
+
+	 svg.append("text")
+	 	.attr("x", x(20))
+	    .attr("y", y(30))
+	    .style("font-style", "italic")
+	    .text("(leaving work)")
+
+	svg.append("svg:image")
+		.attr('x', x(21))
+		.attr('y', y(250))
+		.attr('width', 50)
+		.attr("xlink:href", "beer.png")
 }
 
 function createYearlyViz(data) {
@@ -616,6 +634,18 @@ function createYearlyViz(data) {
         	.attr("cx", d=>Math.round(x(d[0])))
         	.attr("cy", d=>Math.round(y(d[1])))
 	  		.attr("transform","translate("+x.bandwidth()/2+", 0)");
+
+	 svg.append("text")
+	 	.attr("x", x(2016))
+	    .attr("y", y(1170))
+	    .style("background", "white")
+	    .text("march 2016: \"home doors\" installed in many stations")
+
+	 svg.append("text")
+	 	.attr("x", x(2013))
+	    .attr("y", y(1330))
+	    .style("background", "white")
+	    .text("may 2013: research published on effectiveness of blue LED lights in stations")
 }
 
 
