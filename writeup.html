@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Meta data -->
+	<title>Injuries on Japan's Railway System</title>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Intro section -->
+	<section id="intro">
+		<div class="container">
+			<h1>Injuries on Japan's Railway System: Write Up</h1>
+			<p>
+				COMS 4995 Data Visualization, Columbia University
+				<br>
+				By: Jessica Cheng, Kenny Yuan, Liz Nichols, Courtney Mok
+			</p>
+		</div>
+	</section>
+    
+    <!-- Write Up Section -->
+	<section>
+		<div class="container">
+            <h2>Write Up:</h2>
+            <br>
+			<p>
+                For the past decade, <i>laboneko</i> has been keeping track of all injuries that have occurred on Japan’s railway system. In that time, they have gathered over ten thousand data points about the location and severity of each accident as well as the age and sex of the victims involved. We became interested in this dataset because we felt that there were many stories hidden in the data, not being told by anyone. In particular, we noticed that many of the accidents had the label &ldquo;自身事故&rdquo; (&ldquo;jishin jiko&rdquo; or &ldquo;personal injury&rdquo;), which is a term commonly used as a euphemism for suicide. Track suicides have become a banal part of reality, and we wanted to take a closer look at this data to deliver a more impactful message about where attention should be directed to increase the safety of the railway system in Japan.
+                <br><br>
+                Broadly, we wanted to find ways to organize and present this data so that it better illustrates how injury risk is distributed over time, place, and demographic factors. We hypothesized that over the past decade, working-age adults at busy metropolitan stations are at the highest risk for getting into suicides on Japan’s railway system.
+                <br><br>
+                It is no secret that work stress and suicide have been issues of discussion in Japan, and we referred to a number of studies on the methods to increase the safety of railway stations. Besides those, however, we did not find too many other data analyses of the injury numbers. We began by looking at <a href="https://accident.laboneko.jp/stats/stations/262" target="_blank"><i>laboneko</i>’s default charts</a>, which provide very basic breakdowns of their data. And we built off of <a href="https://observablehq.com/@jxcheng/injuries-on-the-japan-subway" target="_blank">our A4</a>, in which we analyzed how accidents are distributed over time.
+                <br><br>
+                Since <i>laboneko</i>’s data was hosted only on their website, we had to scrape the data. We wrote code that implemented brute force translation to get the age, sex, and severity of each data point in English. As the original dataset only had station names, we struggled to encode the location data. At first we tried to geocode the stations through <a href="https://locationiq.com/" target="_blank">Location IQ</a>, but found it to be inaccurate when dealing with kanji. Eventually, we decided to use Google’s Geocoding API to get the coordinates of each station. We then cross-referenced that with a Geojson of Japan to the prefecture and region of each data point.
+                <br><br>
+                In designing our data encodings, we were aware that the data had many different dimensions, so our goal was to break it up into more digestible visualizations. For the geographic and demographic visualizations, we put much thought into whether using bars or bubbles would best encode the number of accidents. After posing this question to the panel for A5.2, we decided to prioritize the ability to facilitate comparisons and went with bars. To make our narrative easier to follow, we also included a number of static graphs to highlight key points. For instance, before our primary time visualization that shows accidents distributed over months and years, we included a simple line plot that shows the number of accidents decreasing each year. Along with that, we included tooltips and annotations to emphasize our main takeaways and provide auxiliary information on-demand.
+                <br><br>
+                We implemented the final visualization as a single HTML page using D3.js. All the data is loaded in as JSON, and we did most of the data processing beforehand in Python (i.e. cleaning, geolocation) to reduce the client-side performance load. For aesthetics, we used Bootstrap for styling, FontAwesome for icons, and Google Fonts.
+                <br><br>
+                Based on feedback from the breakout room sessions and from our families and friends, our final visualizations seem to work well with our data story to convey our findings. Our breakout room session visitors told us that they liked our site overall, but would have liked to see axes labels rather than reading through the data story to figure out the axes. This was a relatively easy fix that we have included in our final submission.
+                <br><br>
+                We also received comments that, since our final remarks mention specific safety measures implemented and suggest that those measures might be useful, it would be interesting to place the dates of when those policies were enacted onto our visualization that shows the annual number of accidents over the decade of data. We have done more research in order to implement the suggestion, but we haven’t been able to include a large variety of safety measures as we are slightly limited by our group’s general lack of fluency in Japanese.
+                <br><br>
+                In the future, we would like to implement semantic zoom on our geographic visualizations so that we can break down the data by prefecture as opposed to just regions. We are also currently working on normalizing by density.
+			</p>
+            <br><br><br>
+            <h2>Acknowledgements:</h2>
+            <br>
+            <p>
+                We’d like to thank <i>laboneko</i> for giving us permission to use their dataset.
+            </p>
+            <br><br><br>
+            <h2>References:</h2>
+            <br>
+            <ul>
+                <li><a href="https://accident.laboneko.jp/" target="_blank">https://accident.laboneko.jp/</a></li>
+                <li><a href="https://observablehq.com/@jxcheng/injuries-on-the-japan-subway" target="_blank">https://observablehq.com/@jxcheng/injuries-on-the-japan-subway</a></li>
+                <li><a href="https://locationiq.com/" target="_blank">https://locationiq.com/</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Rail_transport_in_Japan" target="_blank">https://en.wikipedia.org/wiki/Rail_transport_in_Japan</a></li>
+                <li><a href="https://www.jreast.co.jp/passenger/index.html" target="_blank">https://www.jreast.co.jp/passenger/index.html</a></li>
+                <li><a href="http://web.mta.info/nyct/facts/ridership/" target="_blank">http://web.mta.info/nyct/facts/ridership/</a></li>
+                <li><a href="https://www.statista.com/statistics/643486/japan-female-employment-rate/" target="_blank">https://www.statista.com/statistics/643486/japan-female-employment-rate/</a></li>
+                <li><a href="https://www.statista.com/statistics/643300/japan-male-employment-rate/" target="_blank">https://www.statista.com/statistics/643300/japan-male-employment-rate/</a></li>
+                <li><a href="https://mainichi.doda.jp/article/2019/01/26/1083.html" target="_blank">https://mainichi.doda.jp/article/2019/01/26/1083.html</a></li>
+                <li><a href="https://next.rikunabi.com/tech/docs/ct_s03600.jsp?p=001083" target="_blank">https://next.rikunabi.com/tech/docs/ct_s03600.jsp?p=001083</a></li>
+                <li><a href="https://www.citylab.com/transportation/2018/05/the-amazing-psychology-of-japanese-train-stations/560822/" target="_blank">https://www.citylab.com/transportation/2018/05/the-amazing-psychology-of-japanese-train-stations/560822/</a></li>
+                <li><a href="https://www.itmedia.co.jp/makoto/articles/1008/10/news034.html" target="_blank">https://www.itmedia.co.jp/makoto/articles/1008/10/news034.html</a></li>
+                <li><a href="https://www.intage.co.jp/library/20120827/" target="_blank">https://www.intage.co.jp/library/20120827/</a></li>
+                <li><a href="https://toyokeizai.net/articles/-/128884" target="_blank">https://toyokeizai.net/articles/-/128884</a></li>
+            </ul>
+            
+
+		</div>
+	</section>
+</body>
+</html>

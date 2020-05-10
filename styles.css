@@ -11,6 +11,18 @@ h1 {
     font-family: 'Nunito', sans-serif;
 }
 
+h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.8em;
+}
+
+ul {
+	font-size: 1.1em;
+	line-height: 1.75em;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
 .svg-tooltip {
     background: rgba(69,77,93,.9);
     border-radius: .1rem;
