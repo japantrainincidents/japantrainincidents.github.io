@@ -1094,34 +1094,48 @@ function creategeoviz(){
 
         d3.select("#yearselect").on("change",function(){
             d3.select("#rates_g").selectAll("circle").remove();
-            drawrates(d3.select("#yearselect").node().value)
-        })
+            var scaleval = d3.select("#scalefactor").node().value;
+            drawrates(d3.select("#yearselect").node().value,scaleval)
+        });
 
         d3.select("#scalefactor").on("change",function(){
-            var scaleval = d3.select("#scalefactor").node().value
+            var scaleval = d3.select("#scalefactor").node().value;
             d3.select("#bg_g").selectAll("path").remove();
             d3.select("#map_g").selectAll("path").remove();
             d3.select("#stops_g").selectAll("circle").remove();
             d3.select("#inj_g").selectAll("circle").remove();
             d3.select("#rates_g").selectAll("circle").remove();
-            drawjapan(scaleval)
-            drawrrsections(scaleval)
-            drawstations(scaleval)
-            drawinjuries(scaleval)
-            drawrates("2011",scaleval)
-        })
+            drawjapan(scaleval);
+            drawrrsections(scaleval);
+            drawstations(scaleval);
+            drawinjuries(scaleval);
+            drawrates("2011",scaleval);
+        });
 
 
-        d3.select("#normalize").on("click",function(){
-            $("#rates_g").toggleClass("hidden")
-            $("#inj_g").toggleClass("hidden")
-            $("#yearselect").toggleClass("hidden")
-            $(".stops").toggleClass("normalized")
-            $(".japan").toggleClass("normalized")
+        d3.select("#default").on("click",function(){
+            $("#rates_g").toggleClass("hidden");
+            $("#inj_g").toggleClass("hidden");
+            $("#yearselect").toggleClass("hidden");
+            $(".stops").toggleClass("normalized");
+            $(".japan").toggleClass("normalized");
             $(".rrsections").toggleClass("normalized")
             // $(".bg").toggleClass("normalized")
 
-        })
+        });
+
+            d3.select("#normalize").on("click",function(){
+                $("#rates_g").toggleClass("hidden")
+                $("#inj_g").toggleClass("hidden")
+                $("#yearselect").toggleClass("hidden")
+                $(".stops").toggleClass("normalized")
+                $(".japan").toggleClass("normalized")
+                $(".rrsections").toggleClass("normalized")
+                // $(".bg").toggleClass("normalized")
+
+            })
+
+
 
         var div = d3.select("#content").append("div")
             .attr("class", "tooltip")
@@ -1151,6 +1165,9 @@ function creategeoviz(){
                 u.enter()
                     .append('path')
                     .attr('class','japan')
+                    .classed('normalized',function(){
+                        return d3.select("#normalize").node().checked;
+                    })
                     .attr('d', geoGenerator);
             }
 
@@ -1181,6 +1198,9 @@ function creategeoviz(){
                 u.enter()
                     .append('path')
                     .attr("class","rrsections")
+                    .classed('normalized',function(){
+                        return d3.select("#normalize").node().checked;
+                    })
                     .attr('d', geoGenerator);
             }
 
@@ -1219,6 +1239,9 @@ function creategeoviz(){
                 u.enter()
                     .append('circle')
                     .attr('class','stops')
+                    .classed('normalized',function(){
+                        return d3.select("#normalize").node().checked;
+                    })
                     .attr('r', function(){
                         if (scaleval < 4000){
                             return 1

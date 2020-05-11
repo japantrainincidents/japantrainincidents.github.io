@@ -108,50 +108,59 @@
 			</p>
 
 			<!-- INSERT LIZ'S GEO CHART HERE -->
-			<div id="geochart" class="media">	       
-				<div class="row">
-					<div class="col-md-3">
-						<div class="btn-group btn-group-toggle" data-toggle="buttons">
-							<label class="btn btn-primary active">
-								<input type="radio" name="options" id="default" autocomplete="off" checked> Default
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="options" id="normalize" autocomplete="off"> Normalized
-							</label>
-						</div>
-					</div>
-					<div class="col-md-3>
-						<select id="yearselect" class="hidden">
-							<option value="2011">2011</option>
-							<option value="2012">2012</option>
-							<option value="2013">2013</option>
-							<option value="2014">2014</option>
-							<option value="2015">2015</option>
-							<option value="2016">2016</option>
-							<option value="2017">2017</option>
-					        </select> 
-				        </div>
-		                        <div class="col-md-3">
-			                        <input type="range" min="2000" max="100000" value="2000" class="slider" id="scalefactor">
-			                </div>
-								    		    
-				</div>
-<!-- 				<button type=button class="btn btn-primary" id="normalize">Normalize</button> -->
-				
-				  
-				<svg id="mapsvg" width="100vw" height="100vh">
-				
-					<g id="bg_g" class="bg"></g>
-				
-					<g id="map_g" class="map"></g>
-				
-					<g id="stops_g" class="stops"></g>
-				
-					<g id="inj_g"class="injuries"></g>
-				
-					<g id="rates_g" class="rates hidden"></g>
-			    
-				</svg>
+            <div id="geochart_buttons">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="default" autocomplete="off" checked> Default
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="normalize" autocomplete="off"> Normalized
+                    </label>
+                </div>
+
+
+
+                <select id="yearselect" class="hidden">
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                </select>
+
+                <!--<form>-->
+                    <!--<div class="form-group row">-->
+                        <!--<label for="scalefactor" class="col-md-2 col-form-label">Zoom</label>-->
+                        <!--<div class="col-md-4">-->
+                            <!--<input type="range" min="2000" max="100000" value="2000" class="form-control-range" id="scalefactor">-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                <!--</form>-->
+                <label for="scalefactor">Zoom In</label>
+                <input type="range" min="2000" max="100000" value="2000" class="slider" id="scalefactor">
+                <!-- 				<button type=button class="btn btn-primary" id="normalize">Normalize</button> -->
+            </div>
+			<div id="geochart" class="media">
+
+
+                        <svg id="mapsvg" width="100vw" height="100vh">
+
+                            <g id="bg_g" class="bg"></g>
+
+                            <g id="map_g" class="map"></g>
+
+                            <g id="stops_g" class="stops"></g>
+
+                            <g id="inj_g"class="injuries"></g>
+
+                            <g id="rates_g" class="rates hidden"></g>
+
+                        </svg>
+
+
 			</div>
 
 			<p>

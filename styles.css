@@ -148,12 +148,12 @@ div.bar-tooltip{
 }
 
 /*style for geoviz */
-    body {
-        font-family: "Helvetica Neue", Helvetica, sans-serif;
-        font-size: 14px;
-        color: #333;
-        background-color: lightgrey;
-    }
+    /*body {*/
+        /*font-family: "Helvetica Neue", Helvetica, sans-serif;*/
+        /*font-size: 14px;*/
+        /*color: #333;*/
+        /*background-color: lightgrey;*/
+    /*}*/
 
     /*#content .map path {*/
         /*fill: none;*/
@@ -161,11 +161,17 @@ div.bar-tooltip{
         /*stroke-width: 1px;*/
     /*}*/
 
+
+    #geochart{
+        background-color:lightgrey;
+    }
+
     .rrsections.normalized {
         fill: none;
         stroke: white;
         stroke-width: 1px;
     }
+
 
     .rrsections {
         fill: none;
