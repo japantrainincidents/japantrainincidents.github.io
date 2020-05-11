@@ -108,14 +108,43 @@
 			</p>
 
 			<!-- INSERT LIZ'S GEO CHART HERE -->
-			<div id="geochart" class="media">
-			         <svg id="mapsvg" width="100vw" height="100vh">
-					<g class="bg"></g>
-					<g class="map"></g>
-					<g class="stops"></g>
-					<g class="injuries"></g>
-					<g class="rates"></g>
-				 </svg>
+			<div id="geochart" class="media">	       
+				
+				<button id="normalize">Normalize</button>
+			    
+				<select id="yearselect" class="hidden">
+
+					<option value="2011">2011</option>
+
+					<option value="2012">2012</option>
+
+					<option value="2013">2013</option>
+
+					<option value="2014">2014</option>
+
+					<option value="2015">2015</option>
+
+					<option value="2016">2016</option>
+
+					<option value="2017">2017</option>
+
+				</select>
+			    
+				<input type="range" min="2000" max="100000" value="2000" class="slider" id="scalefactor">
+			    
+				<svg id="mapsvg" width="100vw" height="100vh">
+				
+					<g id="bg_g" class="bg"></g>
+				
+					<g id="map_g" class="map"></g>
+				
+					<g id="stops_g" class="stops"></g>
+				
+					<g id="inj_g"class="injuries"></g>
+				
+					<g id="rates_g" class="rates hidden"></g>
+			    
+				</svg>
 			</div>
 
 			<p>
