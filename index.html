@@ -109,45 +109,36 @@
 
 			<!-- INSERT LIZ'S GEO CHART HERE -->
 			<div id="geochart" class="media">	       
-				
-<!-- 				<button type=button class="btn btn-primary" id="normalize">Normalize</button> -->
-				<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  
-					<label class="btn btn-primary active">
-    
-						<input type="radio" name="options" id="default" autocomplete="off" checked> Default
-  
-					</label>
-  
-					<label class="btn btn-primary">
-    
-						<input type="radio" name="options" id="normalize" autocomplete="off"> Normalized
-  
-					</label>
-  
-
+				<div class="row">
+					<div class="col-md-3">
+						<div class="btn-group btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-primary active">
+								<input type="radio" name="options" id="default" autocomplete="off" checked> Default
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="options" id="normalize" autocomplete="off"> Normalized
+							</label>
+						</div>
+					</div>
+					<div class="col-md-3>
+						<select id="yearselect" class="hidden">
+						<option value="2011">2011</option>
+						<option value="2012">2012</option>
+						<option value="2013">2013</option>
+						<option value="2014">2014</option>
+						<option value="2015">2015</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+					        </select> 
+				        </div>
+		                        <div class="col-md-3">
+			                        <input type="range" min="2000" max="100000" value="2000" class="slider" id="scalefactor">
+			                </div>
+								    		    
 				</div>
-			    
-				<select id="yearselect" class="hidden">
-
-					<option value="2011">2011</option>
-
-					<option value="2012">2012</option>
-
-					<option value="2013">2013</option>
-
-					<option value="2014">2014</option>
-
-					<option value="2015">2015</option>
-
-					<option value="2016">2016</option>
-
-					<option value="2017">2017</option>
-
-				</select>
-			    
-				<input type="range" min="2000" max="100000" value="2000" class="slider" id="scalefactor">
-			    
+<!-- 				<button type=button class="btn btn-primary" id="normalize">Normalize</button> -->
+				
+				  
 				<svg id="mapsvg" width="100vw" height="100vh">
 				
 					<g id="bg_g" class="bg"></g>
