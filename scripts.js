@@ -1085,121 +1085,287 @@ function createMonthlyViz(data) {
 }
 
 function creategeoviz(){
-    var stnmap = {}
-    d3.json("https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson", function(japan){
+        function lizmain(){
+        drawjapan(2000)
+        drawrrsections(2000)
+        drawstations(2000)
+        drawinjuries(2000)
+        drawrates("2011",2000)
 
-        var projection = d3.geoMercator()
-            .center([139.6503,35.6762])
-            .scale(2000)
-            // .scale(60000)
-            .translate([450,460]);
+        d3.select("#yearselect").on("change",function(){
+            d3.select("#rates_g").selectAll("circle").remove();
+            drawrates(d3.select("#yearselect").node().value)
+        })
 
-
-        var geoGenerator = d3.geoPath()
-            .projection(projection);
-
-        function tsukuru(japan) {
-            var u = d3.select('#mapsvg g.bg')
-                .selectAll('path')
-                .data(japan.features);
-
-            u.enter()
-                .append('path')
-                .attr('d', geoGenerator);
-        }
-
-        tsukuru(japan);
-
-    })
-
-    d3.json("https://japantrainincidents.github.io/N02-18_GML/N02-18_RailroadSection.geojson", function(rrsections){
-
-        var projection = d3.geoMercator()
-            .center([139.6503,35.6762])
-            .scale(2000)
-            // .scale(60000)
-            .translate([450,460]);
+        d3.select("#scalefactor").on("change",function(){
+            var scaleval = d3.select("#scalefactor").node().value
+            d3.select("#bg_g").selectAll("path").remove();
+            d3.select("#map_g").selectAll("path").remove();
+            d3.select("#stops_g").selectAll("circle").remove();
+            d3.select("#inj_g").selectAll("circle").remove();
+            d3.select("#rates_g").selectAll("circle").remove();
+            drawjapan(scaleval)
+            drawrrsections(scaleval)
+            drawstations(scaleval)
+            drawinjuries(scaleval)
+            drawrates("2011",scaleval)
+        })
 
 
-        var geoGenerator = d3.geoPath()
-            .projection(projection);
+        d3.select("#normalize").on("click",function(){
+            $("#rates_g").toggleClass("hidden")
+            $("#inj_g").toggleClass("hidden")
+            $("#yearselect").toggleClass("hidden")
+            $(".stops").toggleClass("normalized")
+            $(".japan").toggleClass("normalized")
+            $(".rrsections").toggleClass("normalized")
+            // $(".bg").toggleClass("normalized")
 
-        function update(rrsections) {
-            var u = d3.select('#mapsvg g.map')
-                .selectAll('path')
-                .data(rrsections.features);
+        })
 
-            u.enter()
-                .append('path')
-                .attr('d', geoGenerator);
-        }
+        var div = d3.select("#content").append("div")
+            .attr("class", "tooltip")
+            .attr("id","thetooltip")
+            .style("opacity", 0);
+    }
 
-        update(rrsections);
+    function drawjapan(scaleval){
+        d3.json("https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson", function(japan){
 
-    })
-
-    d3.json("https://gist.githubusercontent.com/nicholsl/139ef02310d1512e25e51d1883db7561/raw/d0b9e6b10809fda7fdb2e796da0588625ae4e1d4/N02-18_Station.geojson", function(stations){
-
-        var projection = d3.geoMercator()
-            .center([139.6503,35.6762])
-            .scale(2000)
-            // .scale(60000)
-            .translate([450,460]);
-
-
-        var geoGenerator = d3.geoPath()
-            .projection(projection);
-        
-        stations.features.forEach(function(stn){
-            stnmap[stn.properties.N02_005] = stn.geometry.coordinates;
-        });
-        
+            var projection = d3.geoMercator()
+                .center([139.6503,35.6762])
+                // .scale(2000)
+                // .scale(60000)
+                .scale(scaleval)
+                .translate([450,460]);
 
 
-        function draw(stations) {
-            var u = d3.select('#mapsvg g.stops')
-                .selectAll('circle')
-                .data(stations.features);
+            var geoGenerator = d3.geoPath()
+                .projection(projection);
 
-            u.enter()
-                .append('circle')
-                .attr('r', 1)
-                .attr("cx", function(d) {return projection(d.geometry.coordinates[0])[0]})
-                .attr("cy", function(d) {return projection(d.geometry.coordinates[1])[1]})
+            function tsukuru(japan) {
+                var u = d3.select('#content g.bg')
+                    .selectAll('path')
+                    .data(japan.features);
+
+                u.enter()
+                    .append('path')
+                    .attr('class','japan')
+                    .attr('d', geoGenerator);
+            }
+
+            tsukuru(japan);
+
+        })
+    }
+
+    function drawrrsections(scaleval){
+        d3.json("https://japantrainincidents.github.io/N02-18_GML/N02-18_RailroadSection.geojson", function(rrsections){
+
+            var projection = d3.geoMercator()
+                .center([139.6503,35.6762])
+                // .scale(2000)
+                // .scale(60000)
+                .scale(scaleval)
+                .translate([450,460]);
 
 
-        }
+            var geoGenerator = d3.geoPath()
+                .projection(projection);
 
-        draw(stations);
+            function update(rrsections) {
+                var u = d3.select('#content g.map')
+                    .selectAll('path')
+                    .data(rrsections.features);
 
-    })
+                u.enter()
+                    .append('path')
+                    .attr("class","rrsections")
+                    .attr('d', geoGenerator);
+            }
 
-    d3.csv("https://raw.githubusercontent.com/kennyyuan98/data-viz-a5/master/pre_processing_scripts/the_real_true_final_version.csv", function(injurysites){
+            update(rrsections);
 
-        var projection = d3.geoMercator()
-            .center([139.6503,35.6762])
-            .scale(2000)
-            // .scale(60000)
-            .translate([450,460]);
+        })
+    }
+
+    function drawstations(scaleval){
+        d3.json("https://gist.githubusercontent.com/nicholsl/139ef02310d1512e25e51d1883db7561/raw/d0b9e6b10809fda7fdb2e796da0588625ae4e1d4/N02-18_Station.geojson", function(stations){
+
+            var projection = d3.geoMercator()
+                .center([139.6503,35.6762])
+                // .scale(2000)
+                // .scale(60000)
+                .scale(scaleval)
+                .translate([450,460]);
 
 
-        var geoGenerator = d3.geoPath()
-            .projection(projection);
+            var geoGenerator = d3.geoPath()
+                .projection(projection);
 
-        function paint(injurysites) {
-            var u = d3.select('#mapsvg g.injuries')
-                .selectAll('circle')
-                .data(injurysites);
+            var stnmap = {}
 
-            u.enter()
-                .append('circle')
-                .attr("class","injury")
-                .attr('r', 1)
-                .attr("cx", function(d) {return projection([d.start_longitude,d.start_latitude])[0]})
-                .attr("cy", function(d) {return projection([d.start_longitude,d.start_latitude])[1]})
-        }
+            stations.features.forEach(function(stn){
+                stnmap[stn.properties.N02_005] = stn.geometry.coordinates;
+            });
 
-        paint(injurysites);
 
-    })
+
+            function draw(stations) {
+                var u = d3.select('#content g.stops')
+                    .selectAll('circle')
+                    .data(stations.features);
+
+                u.enter()
+                    .append('circle')
+                    .attr('class','stops')
+                    .attr('r', function(){
+                        if (scaleval < 4000){
+                            return 1
+                        }else if(scaleval < 6000){
+                            return 2
+                        }else{
+                            return 3
+                        }
+                    })
+                    .attr("cx", function(d) {return projection(d.geometry.coordinates[0])[0]})
+                    .attr("cy", function(d) {return projection(d.geometry.coordinates[1])[1]})
+                    .on("mouseover", function(d) {
+                        d3.select("#thetooltip").transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        d3.select("#thetooltip").html(d.properties.N02_005)
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function(d) {
+                        d3.select("#thetooltip").transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    });
+
+
+            }
+
+            draw(stations);
+
+            return stnmap;
+
+        })
+    }
+
+    function drawrates(year,scaleval){
+        d3.csv("https://gist.githubusercontent.com/nicholsl/28da4d50cbb86eea52cb37fd9003e318/raw/98d39fe9a26cae0d9ee1a90b061474ac88d732af/rates_with_coords.csv", function(rates){
+            // var nest = d3.nest().key(function(d){
+            //     return d.year;
+            // })
+            var yeararray = [];
+            function kaku(year, rates){
+                rates.forEach(function(d){
+                    yeararray.push(d[year])
+                })
+                ratesrange = d3.extent(yeararray);
+
+                var colorScale = d3.scaleSequential(d3.interpolateOranges)
+                    .domain(ratesrange)
+
+
+                var projection = d3.geoMercator()
+                    .center([139.6503,35.6762])
+                    // .scale(2000)
+                    // .scale(60000)
+                    .scale(scaleval)
+                    .translate([450,460]);
+
+
+                var geoGenerator = d3.geoPath()
+                    .projection(projection);
+
+                function draw_rates(rates) {
+                    var u = d3.select('#content g.rates')
+                        .selectAll('circle')
+                        .data(rates);
+
+                    u.enter()
+                        .append('circle')
+                        .attr("class","rate")
+                        .attr('r', function(){
+                            if (scaleval < 4000){
+                                return 1
+                            }else if(scaleval < 6000){
+                                return 2
+                            }else{
+                                return 3
+                            }
+                        })
+                        .attr("cx", function(d) {return projection([d.long,d.lat])[0]})
+                        .attr("cy", function(d) {return projection([d.long,d.lat])[1]})
+                        .attr("fill",function(d){return colorScale(d[year])})
+                        .on("mouseover", function(d) {
+                            d3.select("#thetooltip").transition()
+                                .duration(200)
+                                .style("opacity", .9);
+                            d3.select("#thetooltip").html(d.station + "<br/>" + d.name + "<br/>" + d3.format(".5")(d[year]*10000) + " injuries" + "<br/>" +" per 10,000 passengers")
+                                .style("left", (d3.event.pageX) + "px")
+                                .style("top", (d3.event.pageY - 28) + "px");
+                        })
+                        .on("mouseout", function(d) {
+                            d3.select("#thetooltip").transition()
+                                .duration(500)
+                                .style("opacity", 0);
+                        });
+
+                }
+
+                draw_rates(rates);
+
+            }
+            kaku(year,rates)
+
+        })
+
+    }
+
+
+    function drawinjuries(scaleval){
+        d3.csv("https://raw.githubusercontent.com/kennyyuan98/data-viz-a5/master/pre_processing_scripts/the_real_true_final_version.csv", function(injurysites){
+
+            var projection = d3.geoMercator()
+                .center([139.6503,35.6762])
+                // .scale(2000)
+                // .scale(60000)
+                .scale(scaleval)
+                .translate([450,460]);
+
+
+            var geoGenerator = d3.geoPath()
+                .projection(projection);
+
+            function paint(injurysites) {
+                var u = d3.select('#content g.injuries')
+                    .selectAll('circle')
+                    .data(injurysites);
+
+                u.enter()
+                    .append('circle')
+                    .attr("class","injury")
+                    .attr('r', function(){
+                        if (scaleval < 4000){
+                            return 1
+                        }else if(scaleval < 6000){
+                            return 2
+                        }else{
+                            return 3
+                        }
+                    })
+                    .attr("cx", function(d) {return projection([d.start_longitude,d.start_latitude])[0]})
+                    .attr("cy", function(d) {return projection([d.start_longitude,d.start_latitude])[1]})
+            }
+
+            paint(injurysites);
+
+        })
+    }
+
+    lizmain()
 }
