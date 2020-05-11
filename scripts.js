@@ -1137,7 +1137,7 @@ function creategeoviz(){
 
 
 
-        var div = d3.select("#content").append("div")
+        var div = d3.select("#geochart").append("div")
             .attr("class", "tooltip")
             .attr("id","thetooltip")
             .style("opacity", 0);
