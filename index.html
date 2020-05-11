@@ -110,7 +110,23 @@
 			<!-- INSERT LIZ'S GEO CHART HERE -->
 			<div id="geochart" class="media">	       
 				
-				<button id="normalize">Normalize</button>
+<!-- 				<button type=button class="btn btn-primary" id="normalize">Normalize</button> -->
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  
+					<label class="btn btn-primary active">
+    
+						<input type="radio" name="options" id="default" autocomplete="off" checked> Default
+  
+					</label>
+  
+					<label class="btn btn-primary">
+    
+						<input type="radio" name="options" id="normalize" autocomplete="off"> Normalized
+  
+					</label>
+  
+
+				</div>
 			    
 				<select id="yearselect" class="hidden">
 
