@@ -152,26 +152,67 @@ div.bar-tooltip{
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-size: 14px;
         color: #333;
+        background-color: lightgrey;
     }
 
-    #mapsvg .map path {
+    /*#content .map path {*/
+        /*fill: none;*/
+        /*stroke: dodgerblue;*/
+        /*stroke-width: 1px;*/
+    /*}*/
+
+    .rrsections.normalized {
+        fill: none;
+        stroke: white;
+        stroke-width: 1px;
+    }
+
+    .rrsections {
         fill: none;
         stroke: dodgerblue;
-        stroke-width: .5px;
+        stroke-width: 1px;
     }
 
-    #mapsvg .bg path {
-        fill: none;
+    .japan {
+        fill: white;
         stroke: slategray;
         stroke-width: .5px;
     }
 
-    #mapsvg circle{
+    .japan.normalized {
+        fill: lightskyblue;
+        stroke: slategray;
+        stroke-width: .5px;
+    }
+
+    .stops{
         fill: dodgerblue;
         outline-color:black;
     }
 
-    #mapsvg .injury{
+    .stops.normalized{
+        fill: white;
+        outline-color:black;
+    }
+
+    .injury{
         fill: yellow;
         fill-opacity: 20%;
+    }
+
+    .hidden {
+        display:none;
+    }
+
+    div.tooltip {
+        position: absolute;
+        text-align: center;
+        width: 100px;
+        min-height: 30px;
+        padding: 2px;
+        font: 12px sans-serif;
+        background: lightsteelblue;
+        border: 0px;
+        border-radius: 8px;
+        pointer-events: none;
     }
